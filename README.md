@@ -1,9 +1,6 @@
-# helloworld
+## 介绍
+sjzS 插件是一个用于获取《三角洲行动》游戏中密码门密码的工具。用户可以通过发送特定指令 `/sjzS` 来获取相应的密码。
 
-AstrBot 插件模板
+## 功能
+- 输入 `/sjzS` 指令，自动回复今日的密码门密码。
 
-A template plugin for AstrBot plugin feature
-
-# 支持
-
-[帮助文档](https://astrbot.app)
