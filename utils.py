@@ -23,7 +23,7 @@ async def get_deltaforce_secrets():
             result = re.findall(r'<span\s+class="name">(.*?)</span>', response_text)
             if response.status == 200:
                 formatted_date = datetime.datetime.now().strftime("%Y-%m-%d")
-                formatted_text = formatted_date + "\n(今日密码门密码：" + "\n" + "\n".join(result[0:5])
+                formatted_text = formatted_date + "\n今日密码门密码：" + "\n" + "\n".join(result[0:5])
                 # 缓存到文件
                 with open("deltaforce_secrets.txt", "w", encoding="utf-8") as f:
                     f.write(formatted_text)
