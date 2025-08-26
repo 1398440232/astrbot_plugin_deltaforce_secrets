@@ -14,11 +14,11 @@ class SJZSecret(Star):
     # 注册指令的装饰器。指令名为 helloworld。注册成功后，发送 `/helloworld` 就会触发这个指令，并回复 `你好, {user_name}!`
     @filter.command("sjzS")
     async def sjzSecret(self, event: AstrMessageEvent):
-        """这是一个三角洲查密码们指令""" # 这是 handler 的描述，将会被解析方便用户了解插件内容。建议填写。
+        """这是一个三角洲查密码门指令""" # 这是 handler 的描述，将会被解析方便用户了解插件内容。建议填写。
         user_name = event.get_sender_name()
         message_str = event.message_str # 用户发的纯文本消息字符串
         message_chain = event.get_messages() # 用户所发的消息的消息链 # from astrbot.api.message_components import *
-        reply_msg = getSecrets()
+        reply_msg = await getSecrets()
         logger.info(message_chain)
         yield event.plain_result(reply_msg) # 发送一条纯文本消息
 
