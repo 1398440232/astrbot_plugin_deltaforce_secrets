@@ -1,7 +1,5 @@
 import aiohttp,datetime,os,re
-from loguru import logger
 
-logger.level("INFO")
 
 async def ensure_file_exists(filename):
     """确保文件存在，不存在则创建空文件"""
@@ -23,7 +21,6 @@ async def get_deltaforce_secrets():
         async with session.post(url, headers=headers) as response:
             response_text = await response.text()
             result = re.findall(r'<span\s+class="name">(.*?)</span>', response_text)
-            logger.debug(f"获取密码门密码返回值：{set(result)}")
             if response.status == 200:
                 formatted_date = datetime.datetime.now().strftime("%Y-%m-%d")
                 formatted_text = formatted_date + "\n(今日密码门密码：" + "\n" + "\n".join(result[0:5])
@@ -32,7 +29,7 @@ async def get_deltaforce_secrets():
                     f.write(formatted_text)
                 return formatted_text
             else:
-                logger.error(f"获取密码门密码失败，状态码：{response.status}")
+                pass
 
 async def getSecrets():
     formatted_date = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -43,7 +40,6 @@ async def getSecrets():
         if last_date != formatted_date:
             formatted_text = await get_deltaforce_secrets()
         else:
-            logger.debug("今日密码门密码已更新")
             formatted_text = file_text
     return formatted_text
 
